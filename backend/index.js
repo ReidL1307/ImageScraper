@@ -6,22 +6,24 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 let links = [];
-const dotEndings = [".gif", ".png", ".jpg"];
+const dotEndings = ["gif", "png", "jpg"];
 
 async function getImages(link) {
 	links = [];
 	try {
 		const browser = await puppeteer.launch();
 		const page = await browser.newPage();
+		
 		page.on('response', async response => {
 			const url = response.url();
-			if (response.request().resourceType() === 'image' && dotEndings.some(el => url.endsWith(el))) {
+			if (response.request().resourceType() === 'image') {
 				links.push(url)
 			}
 
 		});
+		
 		await page.goto(link);
-
+		
 		await browser.close();
 	} catch {
 		links = "INVALID_URL";

@@ -1,0 +1,27 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+button {
+    margin-top: 10px;
+}
+
+ol {
+    columns: 4;
+    -webkit-columns: 4;
+    -moz-columns: 4;
+}
+
+.links {
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 700px;
+}
+
+img {
+    width: 30px;
+    height: 30px;
+}
