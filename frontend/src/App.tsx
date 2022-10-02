@@ -1,9 +1,16 @@
 import { useState } from 'react'
-import { List, Container, Box, Button, Pagination, LinearProgress } from '@mui/material';
+import { List, Container, Box, Button, Pagination, CircularProgress, CssBaseline, TextField } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import './App.css'
+import './App.css' 
 
 let data = "";
+
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 async function getRequest(url) {
     let response = await fetch("http://127.0.0.1:8080/?site="+url);
@@ -27,31 +34,39 @@ function App() {
     }
 
     
-  return (
-    <div className="App">
-          <h1>Image Scraper</h1>
-          <input type="text" onChange={ handleChange } />
-          <br/>
-          <button onClick={getData} >Submit</button>
-          <h2>Links</h2>
-          <div className="links">
-              {loading
-                  ? <h3>Loading...</h3>
+    return (
+        <ThemeProvider theme={theme}>
 
-                  : <ol>
-                      {resData.map(dt => {
-                          return (
-                              <li>
-                                  <a href={dt}>
-                                      <img src={ dt }/>
-                                  </a>
-                              </li>
-                          )
-                      })}
-                      </ol>
-              }
-          </div>
-    </div>
+            <div className="App">
+                <CssBaseline />
+                  <h1>Image Scraper</h1>
+
+                  <div>
+                    <input type="text" onChange={ handleChange } />
+                    <button className="button" onClick={getData} >Submit</button>
+                  </div>
+
+                  <h3>Images:</h3>
+                  
+                      {loading
+                          ? <CircularProgress/>
+
+                          : <Container className="links">
+								<ol>
+								  {resData.map(dt => {
+									  return (
+										  <li>
+											  <a href={dt}>
+												  <img src={ dt }/>
+											  </a>
+										  </li>
+									  )
+								  })}
+								</ol>
+								</Container>
+                      }
+            </div>
+        </ThemeProvider>
   )
 }
 

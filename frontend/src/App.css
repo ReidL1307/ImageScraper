@@ -5,6 +5,7 @@
   text-align: center;
 }
 
+
 button {
     margin-top: 10px;
 }
@@ -16,9 +17,8 @@ ol {
 }
 
 .links {
-    border: 2px solid black;
+    border: 2px solid;
     border-radius: 5px;
-    width: 700px;
 }
 
 img {
