@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { List, Container, Box, Button, Pagination, CircularProgress, CssBaseline, TextField } from '@mui/material';
+import { Container, Box, Button, Pagination, CircularProgress, CssBaseline, TextField } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import './App.css' 
@@ -42,14 +42,13 @@ function App() {
                   <h1>Image Scraper</h1>
 
                   <div>
-                    <input type="text" onChange={ handleChange } />
+                    <input placeholder="Enter URL" type="text" className="text" onChange={ handleChange } />
+                    <br />
                     <button className="button" onClick={getData} >Submit</button>
                   </div>
-
-                  <h3>Images:</h3>
                   
                       {loading
-                          ? <CircularProgress/>
+                          ? <CircularProgress className="links"/> 
 
                           : <Container className="links">
 								<ol>
